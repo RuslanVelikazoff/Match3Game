@@ -18,13 +18,12 @@ MonoBehaviour:
   pieceLayout: []
   dots:
   - {fileID: 464414349491983641, guid: 2d865bc2804114c7ba64c0e1a57f66ac, type: 3}
-  - {fileID: 1187930053420938867, guid: 1c5aeb87c64c44d7197e2f84a678e08d, type: 3}
-  scoreGoals: 64000000
+  - {fileID: 8108739292492739688, guid: ce62d04029b13443e9dbfb6789f2487c, type: 3}
   endGameRequirements:
     gameType: 0
     counterValue: 5
   levelGoals:
   - numberNeeded: 8
     numberCollected: 0
-    matchValue: Blue Dot
-    goalSprite: {fileID: 21300000, guid: 280b0096513834134b6418f92dc2a83e, type: 3}
+    matchValue: Purple Dot
+    goalSprite: {fileID: 21300000, guid: 9dae8375eb146c14d827e27d107e55fb, type: 3}

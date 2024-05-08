@@ -17,16 +17,15 @@ MonoBehaviour:
   boardLayout: []
   pieceLayout: []
   dots:
-  - {fileID: 1187930053420938867, guid: 1c5aeb87c64c44d7197e2f84a678e08d, type: 3}
-  - {fileID: 7895812856500908343, guid: c1f816ac7806e49649f6bd345216d58e, type: 3}
+  - {fileID: 1760745603273074453, guid: c1f816ac7806e49649f6bd345216d58e, type: 3}
   - {fileID: 1817807027921279119, guid: 90272a4183454483ab3c47bc6868cb38, type: 3}
-  - {fileID: 8203439415474991255, guid: f6f5de60c3cde44eba023c4a45385d5d, type: 3}
-  scoreGoals: 64000000f4010000e8030000
+  - {fileID: 8108739292492739688, guid: ce62d04029b13443e9dbfb6789f2487c, type: 3}
+  - {fileID: 464414349491983641, guid: 2d865bc2804114c7ba64c0e1a57f66ac, type: 3}
   endGameRequirements:
     gameType: 0
     counterValue: 20
   levelGoals:
-  - numberNeeded: 7
+  - numberNeeded: 50
     numberCollected: 3
     matchValue: Orange Dot
-    goalSprite: {fileID: 21300000, guid: 6c9cf9b80122e44959120da02e2bc270, type: 3}
+    goalSprite: {fileID: 21300000, guid: 38d79439319ad9849a73c8575bee1096, type: 3}

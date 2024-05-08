@@ -7,7 +7,7 @@ namespace SaveData
     [System.Serializable]
     public class GameData
     {
-        public bool[] isActive = new bool[100];
+        public bool[] isActive = new bool[5];
 
         public GameData()
         {

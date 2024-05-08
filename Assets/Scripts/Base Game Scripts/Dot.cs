@@ -43,7 +43,6 @@ public class Dot : MonoBehaviour
     private BonusDot Bonus;
     private DotAnimation dotAnimation;
     private EndGameManager endGameManager;
-    private HintManager hintManager;
     private FindMatches findMatches;
     private Board board;
 
@@ -61,7 +60,6 @@ public class Dot : MonoBehaviour
         animator = GetComponent<Animator>();
         board = GameObject.FindWithTag("Board").GetComponent<Board>(); 
         findMatches = FindObjectOfType<FindMatches>();
-        hintManager = FindObjectOfType<HintManager>();
         endGameManager = FindObjectOfType<EndGameManager>();
     }
 
@@ -190,13 +188,7 @@ public class Dot : MonoBehaviour
         {
             animator.SetBool("Touched", true);
         }
-
-        //Уничтожение подсказки
-        if (hintManager != null)
-        {
-            hintManager.DestroyHint();
-        }
-
+        
         if (board.currentState == GameState.move)
         {
             firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
