@@ -18,10 +18,6 @@ public class Level : ScriptableObject
     [Header("Разновидности точек")]
     public GameObject[] dots;
 
-    [Header("Задний фон доски")]
-    public Vector3 BGposition;
-    public GameObject BG;
-
     [Header("Конечная цель уровня")]
     public EndGameRequirements endGameRequirements;
     public BlankGoal[] levelGoals;

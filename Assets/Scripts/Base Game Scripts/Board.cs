@@ -13,11 +13,7 @@ public enum GameState
 
 public enum TileKind
 {
-    Breakable,
-    Blank,
-    Lock,
     Concrete,
-    Slime,
     Normal
 }
 
@@ -74,21 +70,13 @@ public class Board : MonoBehaviour
     public TileType[] boardLayout;
     public PieceType[] pieceLayout;
     public GameObject[] Dots; //Игровые элементы
-    public GameObject levelBG;
-    private Vector3 BGposition;
 
     [Header("Префабы")]
     public GameObject tilePrefab; //размер плитки 512 х 512
     public GameObject destroyEffect;
-    public GameObject breakableTilePrefab;
-    public GameObject lockTilePrefab;
     public GameObject concreteTilePrefab;
-    public GameObject slimeTilePrefab;
     private bool[,] blankSpaces; //Игровое поле
-    private BackgroundTile[,] breakableTiles;
-    public BackgroundTile[,] lockTiles;
     public BackgroundTile[,] concreteTiles;
-    private BackgroundTile[,] slimeTiles;
     public GameObject[,] allDots;
     public Dot currentDot;
 
@@ -96,7 +84,6 @@ public class Board : MonoBehaviour
     public MatchType matchType;
     private FindMatches findMatches;
     private GoalManager goalManager;
-    private bool makeSlime = true;
 
     private void Awake()
     {
@@ -115,8 +102,6 @@ public class Board : MonoBehaviour
                     Dots = world.levels[level].dots;
                     boardLayout = world.levels[level].boardLayout;
                     pieceLayout = world.levels[level].pieceLayout;
-                    BGposition = world.levels[level].BGposition;
-                    levelBG = world.levels[level].BG;
                 }
             }
         }
@@ -126,10 +111,7 @@ public class Board : MonoBehaviour
     {
         blankSpaces = new bool[Width, Height]; //Инициализация поля
         allDots = new GameObject[Width, Height]; //Инициализация элементов
-        breakableTiles = new BackgroundTile[Width, Height]; //Инициализация желе
-        lockTiles = new BackgroundTile[Width, Height]; //Инициализация закрытых элементов
         concreteTiles = new BackgroundTile[Width, Height]; //Инициализация бетонных элементов
-        slimeTiles = new BackgroundTile[Width, Height]; //Инициализация элементов слайма
 
         findMatches = FindObjectOfType<FindMatches>();
         goalManager = FindObjectOfType<GoalManager>();
@@ -142,56 +124,6 @@ public class Board : MonoBehaviour
     private void Update()
     {
         findMatches.FindAllMatches();
-    }
-
-    public void GenerateBlankSpaces()
-    {
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
-            if (boardLayout[i].tileKind == TileKind.Blank)
-            {
-                blankSpaces[boardLayout[i].x, boardLayout[i].y] = true;
-            }
-        }
-    }
-
-    public void GenerateLevelBG()
-    {
-        GameObject BG = Instantiate(levelBG, BGposition, Quaternion.identity);
-    }
-
-    public void GenerateBreakableTiles()
-    {
-        //Просмотр всего поля
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
-            //Если плитка является Желе
-            if (boardLayout[i].tileKind == TileKind.Breakable)
-            {
-                //Создать плитку желе на этом месте
-                Vector2 tempPosition = new Vector2(boardLayout[i].x, boardLayout[i].y);
-                GameObject tile = Instantiate(breakableTilePrefab, tempPosition, Quaternion.identity);
-
-                breakableTiles[boardLayout[i].x, boardLayout[i].y] = tile.GetComponent<BackgroundTile>();
-            }
-        }
-    }
-
-    public void GenerateLockTiles()
-    {
-        //Просмотр всего поля
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
-            //Если плитка является Закрытой
-            if (boardLayout[i].tileKind == TileKind.Lock)
-            {
-                //Создать закрытую плитку на этом месте
-                Vector2 tempPosition = new Vector2(boardLayout[i].x, boardLayout[i].y);
-                GameObject tile = Instantiate(lockTilePrefab, tempPosition, Quaternion.identity);
-
-                lockTiles[boardLayout[i].x, boardLayout[i].y] = tile.GetComponent<BackgroundTile>();
-            }
-        }
     }
 
     public void GenerateConcreteTiles()
@@ -207,23 +139,6 @@ public class Board : MonoBehaviour
                 GameObject tile = Instantiate(concreteTilePrefab, tempPosition, Quaternion.identity);
 
                 concreteTiles[boardLayout[i].x, boardLayout[i].y] = tile.GetComponent<BackgroundTile>();
-            }
-        }
-    }
-
-    public void GenerateSlimeTiles()
-    {
-        //Просмотр всего поля
-        for (int i = 0; i < boardLayout.Length; i++)
-        {
-            //Если плитка является Закрытой
-            if (boardLayout[i].tileKind == TileKind.Slime)
-            {
-                //Создать плитку слайма на этом месте
-                Vector2 tempPosition = new Vector2(boardLayout[i].x, boardLayout[i].y);
-                GameObject tile = Instantiate(slimeTilePrefab, tempPosition, Quaternion.identity);
-
-                slimeTiles[boardLayout[i].x, boardLayout[i].y] = tile.GetComponent<BackgroundTile>();
             }
         }
     }
@@ -274,19 +189,13 @@ public class Board : MonoBehaviour
 
     private void SetUp()  
     {
-        GenerateLevelBG();
-
-        GenerateBlankSpaces();
-        GenerateBreakableTiles();
-        GenerateLockTiles();
         GenerateConcreteTiles();
-        GenerateSlimeTiles();
 
         for (int i = 0; i < Width; i++)
         {
             for (int j = 0; j < Height; j++)
             {
-                if (!blankSpaces[i, j] && !concreteTiles[i, j] && !slimeTiles[i, j])
+                if (!blankSpaces[i, j] && !concreteTiles[i, j])
                 {
                     //Создание поля
                     Vector2 temoPosition = new Vector2(i, j + offSet);
@@ -546,10 +455,7 @@ public class Board : MonoBehaviour
     {
         if (allDots[column, row].GetComponent<Dot>().isMatched)
         {
-            DamageBreakable(column, row);
-            DamageLock(column, row);
             DamageConcrete(column, row);
-            DamageSlime(column, row);
 
             //Обновление панели с целями
             if (goalManager != null)
@@ -591,32 +497,6 @@ public class Board : MonoBehaviour
             }
         }
         StartCoroutine(DecreaseRowCo2());
-    }
-
-    private void DamageBreakable(int column, int row)
-    {
-        //Может ли плитка быть сломана?
-        if (breakableTiles[column, row] != null)
-        {
-            //Если Это так, то нанести один дамаг
-            breakableTiles[column, row].TakeDamage(1);
-            if (breakableTiles[column, row].hitPoints <= 0)
-            {
-                breakableTiles[column, row] = null;
-            }
-        }
-    }
-
-    private void DamageLock(int column, int row)
-    {
-        if (lockTiles[column, row] != null)
-        {
-            lockTiles[column, row].TakeDamage(1);
-            if (lockTiles[column, row].hitPoints <= 0)
-            {
-                lockTiles[column, row] = null;
-            }
-        }
     }
 
     private void DamageConcrete(int column, int row)
@@ -674,65 +554,6 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void DamageSlime(int column, int row)
-    {
-        if (column > 0)
-        {
-            if (slimeTiles[column - 1, row])
-            {
-                slimeTiles[column - 1, row].TakeDamage(1);
-                if (slimeTiles[column - 1, row].hitPoints <= 0)
-                {
-                    slimeTiles[column - 1, row] = null;
-                    GameObject tile = Instantiate(tilePrefab, new Vector2(column - 1, row), Quaternion.identity);
-                }
-                makeSlime = false;
-            }
-        }
-
-        if (column < Width - 1)
-        {
-            if (slimeTiles[column + 1, row])
-            {
-                slimeTiles[column + 1, row].TakeDamage(1);
-                if (slimeTiles[column + 1, row].hitPoints <= 0)
-                {
-                    slimeTiles[column + 1, row] = null;
-                    GameObject tile = Instantiate(tilePrefab, new Vector2(column + 1, row), Quaternion.identity);
-                }
-                makeSlime = false;
-            }
-        }
-
-        if (row > 0)
-        {
-            if (slimeTiles[column, row - 1])
-            {
-                slimeTiles[column, row - 1].TakeDamage(1);
-                if (slimeTiles[column, row - 1].hitPoints <= 0)
-                {
-                    slimeTiles[column, row - 1] = null;
-                    GameObject tile = Instantiate(tilePrefab, new Vector2(column, row - 1), Quaternion.identity);
-                }
-                makeSlime = false;
-            }
-        }
-
-        if (row < Height - 1)
-        {
-            if (slimeTiles[column, row + 1])
-            {
-                slimeTiles[column, row + 1].TakeDamage(1);
-                if (slimeTiles[column, row + 1].hitPoints <= 0)
-                {
-                    slimeTiles[column, row + 1] = null;
-                    GameObject tile = Instantiate(tilePrefab, new Vector2(column, row + 1), Quaternion.identity);
-                }
-                makeSlime = false;
-            }
-        }
-    }
-
     public void DecreaseRow()
     {
         StartCoroutine(DecreaseRowCo2());
@@ -746,7 +567,7 @@ public class Board : MonoBehaviour
             for (int j = 0; j < Height; j++)
             {
                 //Если текущее место не пустое
-                if (!blankSpaces[i, j] && allDots[i, j] == null && !concreteTiles[i, j] && !slimeTiles[i, j])
+                if (!blankSpaces[i, j] && allDots[i, j] == null && !concreteTiles[i, j])
                 {
                     //Цикл от пробела выше до вершины столбца
                     for (int k = j + 1; k < Height; k++)
@@ -803,7 +624,7 @@ public class Board : MonoBehaviour
         {
             for (int j = 0; j < Height; j++)
             {
-                if (allDots[i, j] == null && !blankSpaces[i, j] && !concreteTiles[i, j] && !slimeTiles[i, j])
+                if (allDots[i, j] == null && !blankSpaces[i, j] && !concreteTiles[i, j])
                 {
                     Vector2 tempPosition = new Vector2(i, j + offSet);
                     int dotToUse = Random.Range(0, Dots.Length);
@@ -858,7 +679,6 @@ public class Board : MonoBehaviour
             yield break;
         }
         currentDot = null;
-        CheckToMakeSlime();
 
         if (isDeadlocker())
         {
@@ -869,25 +689,6 @@ public class Board : MonoBehaviour
         if (currentState != GameState.pause)
         {
             currentState = GameState.move;
-        }
-        makeSlime = true;
-    }
-
-    //Slimes
-    private void CheckToMakeSlime()
-    {
-        //Проверим список слаймов
-        for (int i = 0; i < Width; i++)
-        {
-            for (int j = 0; j < Height; j++)
-            {
-                if (slimeTiles[i, j] != null && makeSlime)
-                {
-                    //Вызвать другой метод для создания слайма
-                    MakeNewSlime();
-                    return;
-                }
-            }
         }
     }
 
@@ -911,34 +712,6 @@ public class Board : MonoBehaviour
         }
         return Vector2.zero;
     }
-
-    private void MakeNewSlime()
-    {
-        bool slime = false;
-        int loops = 0;
-        while (!slime && loops < 200)
-        {
-            int newX = Random.Range(0, Width);
-            int newY = Random.Range(0, Height);
-
-            if (slimeTiles[newX, newY] != null)
-            {
-                Vector2 adjacent = CheckForAdjacent(newX, newY);
-
-                if (adjacent != Vector2.zero)
-                {
-                    Destroy(allDots[newX + (int)adjacent.x, newY + (int)adjacent.y]);
-                    Vector2 tempPosition = new Vector2(newX + (int)adjacent.x, newY + (int)adjacent.y);
-                    GameObject tile = Instantiate(slimeTilePrefab, tempPosition, Quaternion.identity);
-                    slimeTiles[newX + (int)adjacent.x, newY + (int)adjacent.y] = tile.GetComponent<BackgroundTile>();
-                    slime = true;
-                }
-            }
-
-            loops++;
-        }
-    }
-    //End slimes
 
     private void SwitchPieces(int column, int row, Vector2 direction)
     {
@@ -1060,7 +833,7 @@ public class Board : MonoBehaviour
             for (int j = 0; j < Height; j++)
             {
                 //Если это место не должно быть пустым
-                if (!blankSpaces[i, j] && !concreteTiles[i, j] && !slimeTiles[i, j])
+                if (!blankSpaces[i, j] && !concreteTiles[i, j])
                 {
                     //Выбираем случайное число
                     int pieceToUse = Random.Range(0, newBoard.Count);

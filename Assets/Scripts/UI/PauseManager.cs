@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    public Button pauseButton;
+    public Button backButton;
+
     public GameObject pausePanel;
-    public Image soundButton;
-    public Image musicButton;
-    public Sprite musicOnSprite;
-    public Sprite musicOffSprite;
 
     public bool paused = false;
 
@@ -18,8 +17,7 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        CheckSoundVolume();
-        CheckMusicVolume();
+        ButtonClickAction();
 
         pausePanel.SetActive(false);
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
@@ -39,85 +37,25 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void CheckSoundVolume()
+    private void ButtonClickAction()
     {
-        if (PlayerPrefs.HasKey("Sound"))
+        if (pauseButton != null)
         {
-            if (PlayerPrefs.GetInt("Sound") == 0)
+            pauseButton.onClick.RemoveAllListeners();
+            pauseButton.onClick.AddListener(() =>
             {
-                soundButton.sprite = musicOffSprite;
-            }
-            else
-            {
-                soundButton.sprite = musicOnSprite;
-            }
+                PauseGame();
+                pausePanel.SetActive(true);
+            });
         }
-        else
-        {
-            soundButton.sprite = musicOnSprite;
-        }
-    }
 
-    private void CheckMusicVolume()
-    {
-        if (PlayerPrefs.HasKey("Music"))
+        if (backButton != null)
         {
-            if (PlayerPrefs.GetInt("Music") == 0)
+            backButton.onClick.RemoveAllListeners();
+            backButton.onClick.AddListener(() =>
             {
-                musicButton.sprite = musicOffSprite;
-            }
-            else
-            {
-                musicButton.sprite = musicOnSprite;
-            }
-        }
-        else
-        {
-            musicButton.sprite = musicOnSprite;
-        }
-    }
-
-    public void SoundButton()
-    {
-        if (PlayerPrefs.HasKey("Sound"))
-        {
-            if (PlayerPrefs.GetInt("Sound") == 0)
-            {
-                soundButton.sprite = musicOnSprite;
-                PlayerPrefs.SetInt("Sound", 1);
-            }
-            else
-            {
-                soundButton.sprite = musicOffSprite;
-                PlayerPrefs.SetInt("Sound", 0);
-            }
-        }
-        else
-        {
-            soundButton.sprite = musicOffSprite;
-            PlayerPrefs.SetInt("Sound", 1);
-        }
-    }
-
-    public void MusicButton()
-    {
-        if (PlayerPrefs.HasKey("Music"))
-        {
-            if (PlayerPrefs.GetInt("Music") == 0)
-            {
-                musicButton.sprite = musicOnSprite;
-                PlayerPrefs.SetInt("Music", 1);
-            }
-            else
-            {
-                musicButton.sprite = musicOffSprite;
-                PlayerPrefs.SetInt("Music", 0);
-            }
-        }
-        else
-        {
-            musicButton.sprite = musicOffSprite;
-            PlayerPrefs.SetInt("Music", 1);
+                ExitGame();
+            });
         }
     }
 

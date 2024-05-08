@@ -70,7 +70,7 @@ public class Dot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            MakeRowBomb();
+            MakeAdjacentBomb();
         }
         if (Input.GetMouseButton(2))
         {
@@ -500,24 +500,17 @@ public class Dot : MonoBehaviour
 
     void MovePiecesActual(Vector2 direction)
     {
-        otherDot = board.allDots[column + (int)direction.x, row + (int)direction.y];
+        otherDot = board.allDots[column + (int) direction.x, row + (int) direction.y];
         previousRow = row;
         previousColumn = column;
 
-        if (board.lockTiles[column, row] == null && board.lockTiles[column + (int)direction.x, row + (int)direction.y] == null)
+        if (otherDot != null)
         {
-            if (otherDot != null)
-            {
-                otherDot.GetComponent<Dot>().column += -1 * (int)direction.x;
-                otherDot.GetComponent<Dot>().row += -1 * (int)direction.y;
-                column += (int)direction.x;
-                row += (int)direction.y;
-                StartCoroutine(CheckMoveCo());
-            }
-            else
-            {
-                board.currentState = GameState.move;
-            }
+            otherDot.GetComponent<Dot>().column += -1 * (int) direction.x;
+            otherDot.GetComponent<Dot>().row += -1 * (int) direction.y;
+            column += (int) direction.x;
+            row += (int) direction.y;
+            StartCoroutine(CheckMoveCo());
         }
         else
         {
