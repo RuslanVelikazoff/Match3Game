@@ -8,16 +8,12 @@ public class DotAnimation : MonoBehaviour
     [Header("Анимация для столбцовой бомбы")]
     public GameObject columnRocketUp;
     public GameObject columnRocketDown;
-    public GameObject ParticleUp;
-    public GameObject ParticleDown;
     public float columnAnimationDuration = 3.5f;
 
     [Space(8)]
     [Header("Анимация для рядовой бомбы")]
     public GameObject rowRocketRight;
     public GameObject rowRocketLeft;
-    public GameObject ParticleRight;
-    public GameObject ParticleLeft;
     public float rowAnimationDuration = 3.5f;
 
     [Space(8)]
@@ -34,7 +30,6 @@ public class DotAnimation : MonoBehaviour
 
     [Space(8)]
     [Header("Анимация для квадратной бомбы")]
-    public GameObject ParticleSmallExplosion;
     public float adjacentBombAnimationDuration = 3.5f;
 
     Vector2 dotPosition;
@@ -92,16 +87,11 @@ public class DotAnimation : MonoBehaviour
         GameObject rocketUp = Instantiate(columnRocketUp, dotPosition, Quaternion.identity);
         GameObject rocketDown = Instantiate(columnRocketDown, dotPosition, Quaternion.identity);
 
-        GameObject particleUp = Instantiate(ParticleUp, particleUpPosition, Quaternion.identity);
-        GameObject particleDown = Instantiate(ParticleDown, particleDownPosition, Quaternion.identity);
-
         //Анимация
         for (int i = 0; i < board.Height; i++)
         {
             sequence.Join(rocketUp.transform.DOMove(new Vector2(column, row + i + 1), 1))
-                .Join(particleUp.transform.DOMove(new Vector2(column, row + i + .5f), 1))
-                .Join(rocketDown.transform.DOMove(new Vector2(column, row - i - 1), 1))
-                .Join(particleDown.transform.DOMove(new Vector2(column, row - i - .5f), 1));
+                .Join(rocketDown.transform.DOMove(new Vector2(column, row - i - 1), 1));
 
             if (column >= 0 && column < board.Height)
             {
@@ -128,17 +118,13 @@ public class DotAnimation : MonoBehaviour
         }
 
         sequence.Join(rocketUp.transform.DOMove(new Vector2(column, row + 20 + 1), 3))
-                     .Join(particleUp.transform.DOMove(new Vector2(column, row + 20 + .5f), 3))
-                     .Join(rocketDown.transform.DOMove(new Vector2(column, row - 20 - 1), 3))
-                     .Join(particleDown.transform.DOMove(new Vector2(column, row - 20 - .5f), 3));
+            .Join(rocketDown.transform.DOMove(new Vector2(column, row - 20 - 1), 3));
 
         yield return new WaitForSeconds(6f);
 
         //Уначтожение объектов
         Destroy(rocketUp);
-        Destroy(particleUp);
         Destroy(rocketDown);
-        Destroy(particleDown);
     }
 
     private IEnumerator RowBombAnimationCO(int column, int row)
@@ -155,16 +141,11 @@ public class DotAnimation : MonoBehaviour
         GameObject rocketRight = Instantiate(rowRocketRight, dotPosition, Quaternion.identity);
         GameObject rocketLeft = Instantiate(rowRocketLeft, dotPosition, Quaternion.identity);
 
-        GameObject particleRight = Instantiate(ParticleRight, particleRightPosition, Quaternion.identity);
-        GameObject particleLeft = Instantiate(ParticleLeft, particleLeftPosition, Quaternion.identity);
-
         //Анимация
         for (int i = 0; i < board.Width; i++)
         {
             sequence.Join(rocketRight.transform.DOMove(new Vector2(column + i + 1, row), 1))
-                .Join(particleRight.transform.DOMove(new Vector2(column + i + .5f, row), 1))
-                .Join(rocketLeft.transform.DOMove(new Vector2(column - i - 1, row), 1))
-                .Join(particleLeft.transform.DOMove(new Vector2(column - i - .5f, row), 1));
+                .Join(rocketLeft.transform.DOMove(new Vector2(column - i - 1, row), 1));
 
             if (row >= 0 && row < board.Width)
             {
@@ -191,16 +172,13 @@ public class DotAnimation : MonoBehaviour
         }
 
         sequence.Join(rocketRight.transform.DOMove(new Vector2(column + 20 + 1, row), 3))
-                     .Join(particleRight.transform.DOMove(new Vector2(column + 20 + .5f, row), 3))
-                     .Join(rocketLeft.transform.DOMove(new Vector2(column - 20 - 1, row), 3))
-                     .Join(particleLeft.transform.DOMove(new Vector2(column - 20 - .5f, row), 3));
+            .Join(rocketLeft.transform.DOMove(new Vector2(column - 20 - 1, row), 3));
+        
         yield return new WaitForSeconds(6f);
 
         //Уначтожение объектов
         Destroy(rocketRight);
-        Destroy(particleRight);
         Destroy(rocketLeft);
-        Destroy(particleLeft);
     }
 
     private IEnumerator ColumnRowBombAnimationCO(int column, int row)

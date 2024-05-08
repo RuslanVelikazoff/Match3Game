@@ -23,20 +23,6 @@ public class PauseManager : MonoBehaviour
         board = GameObject.FindWithTag("Board").GetComponent<Board>();
     }
 
-    private void Update()
-    {
-        if (paused && !pausePanel.activeInHierarchy)
-        {
-            pausePanel.SetActive(true);
-            board.currentState = GameState.pause;
-        }
-        if (!paused && pausePanel.activeInHierarchy)
-        {
-            pausePanel.SetActive(false);
-            board.currentState = GameState.move;
-        }
-    }
-
     private void ButtonClickAction()
     {
         if (pauseButton != null)
@@ -45,6 +31,7 @@ public class PauseManager : MonoBehaviour
             pauseButton.onClick.AddListener(() =>
             {
                 PauseGame();
+                board.currentState = GameState.pause;
                 pausePanel.SetActive(true);
             });
         }

@@ -19,6 +19,9 @@ public class PausePanel : MonoBehaviour
     [SerializeField]
     private PauseManager pauseManager;
 
+    [SerializeField]
+    private Board board;
+
     private void Start()
     {
         ButtonClickAction();
@@ -32,6 +35,7 @@ public class PausePanel : MonoBehaviour
             continueButton.onClick.AddListener(() =>
             {
                 this.gameObject.SetActive(false);
+                board.currentState = GameState.move;
                 pauseManager.PauseGame();
             });
         }
