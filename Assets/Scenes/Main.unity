@@ -161,8 +161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000026703, y: -0.000015259}
-  m_SizeDelta: {x: 907.82, y: 761.1531}
+  m_AnchoredPosition: {x: -0.0000076294, y: -0.000022888}
+  m_SizeDelta: {x: 775.19, y: 649.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &58511695
 MonoBehaviour:
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1965357562}
         m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
         m_MethodName: LoseOK
         m_Mode: 1
@@ -1196,8 +1196,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 942.29004, y: 790.05005}
+  m_AnchoredPosition: {x: -0.000015259, y: -47}
+  m_SizeDelta: {x: 758.13, y: 635.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &306181431
 Animator:
@@ -1798,8 +1798,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.205}
-  m_SizeDelta: {x: 638.74, y: 302.13}
+  m_AnchoredPosition: {x: -6.535, y: 29}
+  m_SizeDelta: {x: 472.53, y: 223.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &559947200
 MonoBehaviour:
@@ -2152,7 +2152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00061035156, y: -127.26373}
+  m_AnchoredPosition: {x: -0.00061035156, y: -127.26367}
   m_SizeDelta: {x: 0.34, y: 254.5234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &797990704
@@ -4099,7 +4099,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1965357562}
         m_TargetAssemblyTypeName: BackToSplash, Assembly-CSharp
         m_MethodName: WinOK
         m_Mode: 1

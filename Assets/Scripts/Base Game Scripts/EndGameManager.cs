@@ -81,9 +81,6 @@ public class EndGameManager : MonoBehaviour
         board.currentState = GameState.win;
         currentCounterValue = 0;
         counter.text = "" + currentCounterValue;
-
-        FadePanelController fadePanelController = FindObjectOfType<FadePanelController>();
-        fadePanelController.GameOver();
     }
 
     public void LoseGame()
@@ -93,8 +90,5 @@ public class EndGameManager : MonoBehaviour
         Debug.Log("Вы проиграли :(");
         currentCounterValue = 0;
         counter.text = "" + currentCounterValue;
-
-        FadePanelController fadePanelController = FindObjectOfType<FadePanelController>();
-        fadePanelController.GameOver();
     }
 }

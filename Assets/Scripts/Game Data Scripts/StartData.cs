@@ -8,6 +8,8 @@ public class StartData : MonoBehaviour
 {
     public bool[] _isActive;
 
+    public int _selectedLevel;
+
     private const string saveKey = "mainSave";
 
     private void Start()
@@ -30,6 +32,7 @@ public class StartData : MonoBehaviour
         var data = SaveManager.Load<SaveData.GameData>(saveKey);
 
         _isActive = data.isActive;
+        _selectedLevel = data.selectedLevel;
 
         Debug.Log("Данные загружены");
     }
@@ -45,7 +48,8 @@ public class StartData : MonoBehaviour
     {
         var data = new SaveData.GameData()
         {
-            isActive = _isActive
+            isActive = _isActive,
+            selectedLevel = _selectedLevel
         };
 
         return data;

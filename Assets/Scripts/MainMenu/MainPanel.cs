@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainPanel : MonoBehaviour
@@ -26,7 +27,8 @@ public class MainPanel : MonoBehaviour
             newGameButton.onClick.RemoveAllListeners();
             newGameButton.onClick.AddListener(() =>
             {
-                Debug.Log("New game");
+                PlayerPrefs.SetInt("Current Level", 0);
+                SceneManager.LoadScene("Main");
             });
         }
 
