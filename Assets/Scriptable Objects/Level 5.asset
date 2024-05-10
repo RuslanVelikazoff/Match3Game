@@ -15,33 +15,33 @@ MonoBehaviour:
   width: 7
   height: 7
   boardLayout:
-  - x: 6
-    y: 6
+  - x: 0
+    y: 0
     tileKind: 0
   - x: 1
     y: 1
     tileKind: 0
-  - x: 4
+  - x: 3
     y: 4
     tileKind: 0
-  - x: 3
-    y: 3
+  - x: 5
+    y: 2
     tileKind: 0
   pieceLayout: []
   dots:
   - {fileID: 1817807027921279119, guid: 90272a4183454483ab3c47bc6868cb38, type: 3}
   - {fileID: 464414349491983641, guid: 2d865bc2804114c7ba64c0e1a57f66ac, type: 3}
-  - {fileID: 1760745603273074453, guid: c1f816ac7806e49649f6bd345216d58e, type: 3}
   - {fileID: 8108739292492739688, guid: ce62d04029b13443e9dbfb6789f2487c, type: 3}
+  - {fileID: 1760745603273074453, guid: c1f816ac7806e49649f6bd345216d58e, type: 3}
   endGameRequirements:
     gameType: 0
-    counterValue: 20
+    counterValue: 12
   levelGoals:
-  - numberNeeded: 4
-    numberCollected: 10
-    matchValue: Concrete
-    goalSprite: {fileID: 21300000, guid: 840a2a731cd7a7449afca96d149d131c, type: 3}
   - numberNeeded: 25
     numberCollected: 0
     matchValue: Green Dot
     goalSprite: {fileID: 21300000, guid: 04c5ebd7f8cf6974cbfbc6f63a329789, type: 3}
+  - numberNeeded: 4
+    numberCollected: 0
+    matchValue: Concrete
+    goalSprite: {fileID: 21300000, guid: 840a2a731cd7a7449afca96d149d131c, type: 3}

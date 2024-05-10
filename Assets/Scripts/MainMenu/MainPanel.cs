@@ -12,8 +12,11 @@ public class MainPanel : MonoBehaviour
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button exitButton;
 
+    [SerializeField] private GameObject levelsPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject exitPanel;
+
+    [SerializeField] private StartData startData;
 
     private void Start()
     {
@@ -27,8 +30,7 @@ public class MainPanel : MonoBehaviour
             newGameButton.onClick.RemoveAllListeners();
             newGameButton.onClick.AddListener(() =>
             {
-                PlayerPrefs.SetInt("Current Level", 0);
-                SceneManager.LoadScene("Main");
+                levelsPanel.SetActive(true);
             });
         }
 
@@ -37,7 +39,8 @@ public class MainPanel : MonoBehaviour
             continueButton.onClick.RemoveAllListeners();
             continueButton.onClick.AddListener(() =>
             {
-                Debug.Log("ContinueButton");
+                PlayerPrefs.SetInt("Current Level", startData._selectedLevel);
+                SceneManager.LoadScene("Main");
             });
         }
 
