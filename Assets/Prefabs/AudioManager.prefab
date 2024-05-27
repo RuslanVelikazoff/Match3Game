@@ -58,7 +58,19 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Theme
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 71a83782fb744a247bc492e3b04fe028, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WinMiniGame1
+    clip: {fileID: 8300000, guid: c0580b1e501f4044a80dbea38e808d3b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LoseMiniGame1
+    clip: {fileID: 8300000, guid: c559e47f9a8d1b34aa3898ff122851ce, type: 3}
     volume: 1
     pitch: 1
     loop: 0
