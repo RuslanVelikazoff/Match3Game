@@ -2601,7 +2601,7 @@ MonoBehaviour:
   settingsButton: {fileID: 764093734}
   menuButton: {fileID: 284354726}
   settingsPanel: {fileID: 166796825}
-  pauseManager: {fileID: 0}
+  pauseManager: {fileID: 122166355}
   board: {fileID: 252886942}
 --- !u!114 &899006952
 MonoBehaviour:

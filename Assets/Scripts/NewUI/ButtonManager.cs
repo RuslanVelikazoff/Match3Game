@@ -58,7 +58,7 @@ public class ButtonManager : MonoBehaviour
             button.onClick.AddListener(() =>
             {
                 PlayerPrefs.SetInt("Current Level", level);
-                SceneManager.LoadScene(levelToLoad);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(levelToLoad);
             });
         }
     }

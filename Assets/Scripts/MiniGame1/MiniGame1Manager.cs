@@ -89,13 +89,13 @@ public class MiniGame1Manager : MonoBehaviour
 
     public void GameRestart()
     {
-        SceneManager.LoadScene("MiniGame1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MiniGame1");
     }
 
     public void GameQuit()
     {
         Screen.orientation = ScreenOrientation.Portrait;
-        SceneManager.LoadScene("Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
     IEnumerator Spawner()

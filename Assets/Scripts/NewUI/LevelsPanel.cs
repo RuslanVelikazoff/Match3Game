@@ -41,7 +41,7 @@ public class LevelsPanel : MonoBehaviour
                 {
                     data._selectedLevel = 0;
                     PlayerPrefs.SetInt("Current Level", data._selectedLevel);
-                    SceneManager.LoadScene("Main");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
                 }
             });
         }
@@ -55,7 +55,7 @@ public class LevelsPanel : MonoBehaviour
                 {
                     data._selectedLevel = 1;
                     PlayerPrefs.SetInt("Current Level", data._selectedLevel);
-                    SceneManager.LoadScene("Main");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
                 }
             });
         }
@@ -69,7 +69,7 @@ public class LevelsPanel : MonoBehaviour
                 {
                     data._selectedLevel = 2;
                     PlayerPrefs.SetInt("Current Level", data._selectedLevel);
-                    SceneManager.LoadScene("Main");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
                 }
             });
         }
@@ -83,7 +83,7 @@ public class LevelsPanel : MonoBehaviour
                 {
                     data._selectedLevel = 3;
                     PlayerPrefs.SetInt("Current Level", data._selectedLevel);
-                    SceneManager.LoadScene("Main");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
                 }
             });
         }
@@ -97,7 +97,7 @@ public class LevelsPanel : MonoBehaviour
                 {
                     data._selectedLevel = 4;
                     PlayerPrefs.SetInt("Current Level", data._selectedLevel);
-                    SceneManager.LoadScene("Main");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
                 }
             });
         }

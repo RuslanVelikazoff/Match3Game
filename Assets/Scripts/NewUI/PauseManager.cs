@@ -53,6 +53,6 @@ public class PauseManager : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene("Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }

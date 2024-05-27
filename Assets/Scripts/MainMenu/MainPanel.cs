@@ -48,7 +48,7 @@ public class MainPanel : MonoBehaviour
             continueButton.onClick.AddListener(() =>
             {
                 PlayerPrefs.SetInt("Current Level", startData._selectedLevel);
-                SceneManager.LoadScene("Main");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
             });
         }
 

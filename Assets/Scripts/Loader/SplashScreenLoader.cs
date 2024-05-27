@@ -21,7 +21,7 @@ public class SplashScreenLoader : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Menu");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
             }
         }
     }

@@ -24,13 +24,13 @@ public class BackToSplash : MonoBehaviour
     {
         nextIsActive[board.level + 1] = true;
         Save();
-        SceneManager.LoadScene(sceneToLoad);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }
 
 
     public void LoseOK()
     {
-        SceneManager.LoadScene(sceneToLoad);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }
 
     public void Load()

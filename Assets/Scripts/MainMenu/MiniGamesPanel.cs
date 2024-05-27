@@ -7,6 +7,7 @@ public class MiniGamesPanel : MonoBehaviour
 {
     [SerializeField] private Button backButton;
     [SerializeField] private Button miniGame1Button;
+    [SerializeField] private Button miniGame2Button;
 
     private void OnEnable()
     {
@@ -30,7 +31,16 @@ public class MiniGamesPanel : MonoBehaviour
             miniGame1Button.onClick.AddListener(() =>
             {
                 Screen.orientation = ScreenOrientation.LandscapeRight;
-                SceneManager.LoadScene("MiniGame1");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("MiniGame1");
+            });
+        }
+
+        if (miniGame2Button != null)
+        {
+            miniGame2Button.onClick.RemoveAllListeners();
+            miniGame2Button.onClick.AddListener(() =>
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("MiniGame2");
             });
         }
     }

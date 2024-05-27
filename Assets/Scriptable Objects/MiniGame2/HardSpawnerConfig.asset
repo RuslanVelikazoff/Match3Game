@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191baecbd63c11c498d909c2498aeb3a, type: 3}
+  m_Name: HardSpawnerConfig
+  m_EditorClassIdentifier: 
+  EnemyPrefabs:
+  - {fileID: 5797030854156787373, guid: e94fe5f051028104690a2ac866cf9888, type: 3}
+  BonusPrefabs:
+  - {fileID: 7570926455375412682, guid: 311d23e8e9f30bb4789dd0e3f381ac59, type: 3}
+  - {fileID: 8570407365440124283, guid: a9edf963fc705ec48ba36bb58c72eced, type: 3}
+  SpawnRate: 4
+  playerFireRate: 1.2
+  playerHealth: 1
+  playerDamage: 2
